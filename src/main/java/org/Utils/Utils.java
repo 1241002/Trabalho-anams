@@ -147,5 +147,26 @@ public class Utils
             }
         } while (true);
     }
+
+    public static String geraPassword(int tamanho, int letras, int digitos) {
+        if (letras + digitos != tamanho) throw new IllegalArgumentException();
+        java.util.Random rnd = new java.util.Random();
+
+        String letrasAlfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        StringBuilder sb = new StringBuilder(tamanho);
+
+        // letras
+        for (int i = 0; i < letras; i++) sb.append(letrasAlfa.charAt(rnd.nextInt(letrasAlfa.length())));
+        // dígitos
+        for (int i = 0; i < digitos; i++) sb.append(rnd.nextInt(10));
+
+        // embaralha para não ficar sempre LLLNN
+        char[] arr = sb.toString().toCharArray();
+        for (int i = arr.length - 1; i > 0; i--) {
+            int j = rnd.nextInt(i + 1);
+            char temp = arr[i]; arr[i] = arr[j]; arr[j] = temp;
+        }
+        return new String(arr);
+    }
     
 }

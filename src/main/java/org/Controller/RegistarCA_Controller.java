@@ -22,7 +22,7 @@ public class RegistarCA_Controller {
 
     public String geraCredenciais() {
         String login = ca.getSigla().toLowerCase();
-        String password = Utils.readLineFromConsole("Introduza uma password provisória: ");
+        String password = Utils.geraPassword(5, 3, 2);   // novo helper
         ca.setCredenciais(new Credenciais(login, password));
         return login + " / " + password;
     }
