@@ -7,7 +7,7 @@ package org.UI;
 
 import java.io.IOException;
 
-import utils.Utils;
+import org.Utils.Utils;
 import org.Model.Empresa;
 /**
  *
@@ -35,9 +35,9 @@ public class MenuAdm_UI
  
             if( opcao.equals("1") )
             {
-                 // Completar
                 System.out.println("Selecionou a opção: Registar Coordenador Académico");
-                
+                RegistarCA_UI ui = new RegistarCA_UI(empresa);
+                ui.run();
             }
 
         }

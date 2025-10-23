@@ -2,7 +2,7 @@ package org.UI;
 
 import java.io.IOException;
 
-import utils.Utils;
+import org.Utils.Utils;
 import org.Model.Empresa;
 /**
  *

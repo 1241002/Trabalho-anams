@@ -60,6 +60,35 @@ public class Empresa
         sb.append("Lista de tipos de cursos: "+ lstTiposCurso.toString()+"\n");
         return sb.toString();
     }
+
+    /* NOVOS CAMPOS */
+    private final List<CoordenadorAcademico> lstCA = new ArrayList<>();
+
+    /* -------------------------------------------------- */
+    public CoordenadorAcademico novoCA() { return new CoordenadorAcademico(); }
+
+    public boolean registaCA(CoordenadorAcademico ca) {
+        if (validaCA(ca)) {
+            lstCA.add(ca);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validaCA(CoordenadorAcademico ca) {
+        if (!ca.valida()) return false;
+        /* regra de negócio: sigla única */
+        boolean siglaExiste = lstCA.stream()
+                .anyMatch(c -> c.getSigla().equalsIgnoreCase(ca.getSigla()));
+        return !siglaExiste;
+    }
+
+    /* para enviar email (simulado) */
+    public void enviarCredenciaisPorEmail(CoordenadorAcademico ca) {
+        System.out.println("\n>>> EMAIL ENVIADO para " + ca.getEmail());
+        System.out.println(">>> Login: " + ca.getCredenciais().getLogin());
+        System.out.println(">>> Password: " + ca.getCredenciais().getPassword());
+    }
 }
     
     

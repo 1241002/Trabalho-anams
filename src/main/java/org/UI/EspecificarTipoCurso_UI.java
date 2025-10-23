@@ -6,7 +6,7 @@
 
 package org.UI;
 
-import utils.Utils;
+import org.Utils.Utils;
 import org.Model.Empresa;
 import org.Controller.EspecificarTipoCurso_Controller;
 
