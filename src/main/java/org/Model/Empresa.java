@@ -89,6 +89,11 @@ public class Empresa
         System.out.println(">>> Login: " + ca.getCredenciais().getLogin());
         System.out.println(">>> Password: " + ca.getCredenciais().getPassword());
     }
+
+    // Empresa.java
+    public List<TipoCurso> obterListaTiposCurso() {
+        return new ArrayList<>(lstTiposCurso);
+    }
 }
     
     

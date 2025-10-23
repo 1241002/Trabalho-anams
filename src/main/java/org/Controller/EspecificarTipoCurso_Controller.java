@@ -8,41 +8,35 @@ package org.Controller;
 
 import org.Model.Empresa;
 import org.Model.TipoCurso;
-
+import java.util.List;
 /**
  *
  * @author Dulce Mota <mdm@isep.ipp.pt>
  */
-public class EspecificarTipoCurso_Controller
-{
+public class EspecificarTipoCurso_Controller {
     private final Empresa empresa;
     private TipoCurso tipoCurso;
-    
-    public EspecificarTipoCurso_Controller(Empresa empresa)
-    {
-        this.empresa= empresa;
+
+    public EspecificarTipoCurso_Controller(Empresa empresa) {
+        this.empresa = empresa;
     }
-    public void novoTipoCurso()
-    {
+    public void novoTipoCurso() {
         this.tipoCurso = empresa.novoTipoCurso();
     }
-    public void setDados(String sigla, String descricao){
+    public void setDados(String sigla, String descricao) {
         this.tipoCurso.setSigla(sigla);
         this.tipoCurso.setDescricao(descricao);
     }
-    
-    public String getSigla()
-    {
-        return this.tipoCurso.getSigla();
+
+    public List<TipoCurso> listaTiposCurso() {
+        return empresa.obterListaTiposCurso();
     }
-    
-    public boolean especificarTipoCurso()
-    {
+
+    public boolean especificarTipoCurso() {
         return this.empresa.especificarTipoCurso(this.tipoCurso);
     }
 
-    public String getTipoCursoAsString()
-    {
+    public String getTipoCursoAsString() {
         return this.tipoCurso.toString();
     }
 }
