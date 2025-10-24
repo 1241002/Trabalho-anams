@@ -16,10 +16,14 @@ import java.util.List;
 public class Empresa
 {
     private final List<TipoCurso> lstTiposCurso;
+    private final List<CoordenadorAcademico> lstCA;
+    private final List<Curso> cursos;
     // Completar
     public Empresa()
     {
         this.lstTiposCurso = new ArrayList<>();
+        this.lstCA = new ArrayList<>();
+        this.cursos = new ArrayList<>();
     }
   
     public TipoCurso novoTipoCurso()
@@ -62,7 +66,7 @@ public class Empresa
     }
 
     /* NOVOS CAMPOS */
-    private final List<CoordenadorAcademico> lstCA = new ArrayList<>();
+
 
     /* -------------------------------------------------- */
     public CoordenadorAcademico novoCA() { return new CoordenadorAcademico(); }
@@ -93,6 +97,22 @@ public class Empresa
     // Empresa.java
     public List<TipoCurso> obterListaTiposCurso() {
         return new ArrayList<>(lstTiposCurso);
+    }
+    public void addCurso(Curso curso) {
+        this.cursos.add(curso);
+    }
+
+    public List<Curso> getAvailableCourses() {
+        return cursos;
+    }
+
+    public Curso findCursoById(String idCurso) {
+        for (Curso curso : cursos) {
+            if (curso.getSigla().equals(idCurso)) {
+                return curso;
+            }
+        }
+        return null;
     }
 }
     

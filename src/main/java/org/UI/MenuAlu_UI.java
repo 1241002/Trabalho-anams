@@ -30,7 +30,8 @@ public class MenuAlu_UI
 
             if( opcao.equals("1") )
             {
-                // Completar
+                InscreverAluno_UI ui = new InscreverAluno_UI(empresa);
+                ui.run();
                 System.out.println("Selecionou a opção: Fazer inscrição num curso");
 
             }

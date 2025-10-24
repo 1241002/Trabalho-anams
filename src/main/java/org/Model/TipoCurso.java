@@ -22,24 +22,26 @@ public class TipoCurso
         this.setSigla(STRING_POR_OMISSAO);
         this.setDescricao(STRING_POR_OMISSAO);
     }
-    public TipoCurso(String sigla, String descricao)
-    {
-        this.setSigla(sigla);
-        this.setDescricao(descricao);
-    }
-    public String getSigla()
-    {
-        return sigla;
-    }
-    public void setSigla(String sigla)
-    {
+    public TipoCurso(String sigla, String descricao) {
         this.sigla = sigla;
-    }
-    public void setDescricao(String descricao)
-    {
         this.descricao = descricao;
     }
 
+    public String getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
     // Validação local
     public boolean valida()
     {
