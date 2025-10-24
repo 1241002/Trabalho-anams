@@ -70,7 +70,8 @@ public class Empresa
 
 
     /* -------------------------------------------------- */
-    public CoordenadorAcademico novoCA() { return new CoordenadorAcademico(); }
+    public CoordenadorAcademico novoCA() {
+        return new CoordenadorAcademico(); }
 
     public boolean registaCA(CoordenadorAcademico ca) {
         if (validaCA(ca)) {
@@ -101,6 +102,10 @@ public class Empresa
     }
     public void addCurso(Curso curso) {
         this.cursos.add(curso);
+    }
+
+    public List<Curso> getCursos() {
+        return cursos;
     }
 
     public List<Curso> getAvailableCourses() {

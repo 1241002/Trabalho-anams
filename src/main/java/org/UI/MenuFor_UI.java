@@ -13,8 +13,7 @@ public class MenuFor_UI
     private Empresa empresa;
     private String opcao;
 
-    public MenuFor_UI(Empresa empresa)
-    {
+    public MenuFor_UI(Empresa empresa){
         this.empresa = empresa;
     }
     public void run() throws IOException
@@ -31,7 +30,8 @@ public class MenuFor_UI
 
             if( opcao.equals("1") )
             {
-                // Completar
+                ConsultarCursosFormador_UI ui = new ConsultarCursosFormador_UI(empresa);
+                ui.run();
                 System.out.println("Selecionou a opção: Consultar lista de cursos (responsável)");
             }
             else
