@@ -157,6 +157,20 @@ public class Empresa
         System.out.println("\n>>> Módulo associado ao curso '" + curso + "': " + m.getCodigo());
         return true;
     }
+    /* ---------- MOCK para este UC ---------- */
+    private final List<String> cursosEstado = new ArrayList<>();
+
+    /* devolve cursos dum estado (0-4) – SEM validações */
+    public List<String> filtrarCursosPorEstado(int idx) {
+        cursosEstado.clear();
+        /* dados fictícios – substituir quando tiver Curso real */
+        switch (idx) {
+            case 0 -> { cursosEstado.add("Java-Básico"); cursosEstado.add("Excel-Iniciação"); }
+            case 1 -> { cursosEstado.add("Python-Avançado"); }
+            case 4 -> { cursosEstado.add("PowerPoint-Concluído"); }
+        }
+        return new ArrayList<>(cursosEstado);
+    }
 }
     
     
