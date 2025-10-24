@@ -40,8 +40,9 @@ public class MenuCA_UI
             else
             if( opcao.equals("2") )
             {
-                // Completar
                 System.out.println("Selecionou a opção: Registar formador");
+                MenuFor_UI ui = new MenuFor_UI(empresa);
+                ui.run();
             }
             else
             if( opcao.equals("3") )
