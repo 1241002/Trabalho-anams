@@ -62,17 +62,6 @@ public class MenuCA_UI
                 // Completar
                 System.out.println("Selecionou a opção: Tomar decisão sobre candidatura");
             }
-            else
-            if( opcao.equals("5") )
-            {
-                AdicionarModulo_UI ui = new AdicionarModulo_UI(empresa);
-                ui.run();
-            }
-            else
-            if (opcao.equals("6")) {   // ou outro número livre
-                ConsultarCursosPorEstado_UI ui = new ConsultarCursosPorEstado_UI(empresa);
-                ui.run();
-            }
 
         }
         while (!opcao.equals("0") );
