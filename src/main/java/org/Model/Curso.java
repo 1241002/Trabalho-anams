@@ -16,6 +16,9 @@ public class Curso {
     public void adicionarInscricao(Inscricao inscricao) {
         this.inscricoes.add(inscricao);
     }
+    public void removerInscricao(Inscricao inscricao) {
+        this.inscricoes.remove(inscricao);
+    }
 
     public List<Inscricao> getInscricoes() {
         return inscricoes;
