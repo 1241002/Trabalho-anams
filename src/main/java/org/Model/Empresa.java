@@ -8,79 +8,104 @@ package org.Model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
  * @author Dulce Mota <mdm@isep.ipp.pt>
  */
-public class Empresa {
-
+public class Empresa
+{
     private final List<TipoCurso> lstTiposCurso;
     private final List<CoordenadorAcademico> lstCA;
     private final List<Curso> cursos;
-    private final List<Formador> lstFormadores;
-
-    public Empresa() {
+    // Completar
+    public Empresa()
+    {
         this.lstTiposCurso = new ArrayList<>();
         this.lstCA = new ArrayList<>();
         this.cursos = new ArrayList<>();
-        this.lstFormadores = new ArrayList<>();
     }
-
-    /* ----------  TipoCurso  ---------- */
-    public TipoCurso novoTipoCurso() {
+  
+    public TipoCurso novoTipoCurso()
+    {
         return new TipoCurso();
     }
-
-    public boolean especificarTipoCurso(TipoCurso tipoCurso) {
-        // TODO: validação global (sigla única, etc.)
-        adicionarTipoCurso(tipoCurso);
-        return true;
+    public boolean especificarTipoCurso(TipoCurso tipoCurso)
+    {
+        if (this.valida(tipoCurso))
+        {
+           adicionarTipoCurso(tipoCurso);
+           return true;
+        }
+        return false;
     }
-
-    private void adicionarTipoCurso(TipoCurso tipoCurso) {
+        
+    private void adicionarTipoCurso(TipoCurso tipoCurso){
         lstTiposCurso.add(tipoCurso);
     }
-
-    public List<TipoCurso> obterListaTiposCurso() {
-        return new ArrayList<>(lstTiposCurso);
+    // Validação global
+    public boolean valida(TipoCurso tipoCurso)
+    {
+        boolean resp = false;
+        if (tipoCurso.valida())
+        {
+           // Completar        
+           //
+           resp = true; 
+        }
+        return resp;
+    }
+   
+    // Completar com outras funcionalidades
+    
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Empresa: \n");
+        sb.append("Lista de tipos de cursos: "+ lstTiposCurso.toString()+"\n");
+        return sb.toString();
     }
 
-    /* ----------  Formador  ---------- */
-    public Formador novoFormador() {
-        return new Formador();
-    }
+    /* NOVOS CAMPOS */
 
-    public boolean registaFormador(Formador formador) {
-        // TODO: validação global (email duplicado, etc.)
-        lstFormadores.add(formador);
-        return true;
-    }
 
-    public List<Formador> obterListaFormadores() {
-        return new ArrayList<>(lstFormadores);
-    }
-
-    /* ----------  CoordenadorAcademico  ---------- */
+    /* -------------------------------------------------- */
     public CoordenadorAcademico novoCA() {
-        return new CoordenadorAcademico();
-    }
+        return new CoordenadorAcademico(); }
 
     public boolean registaCA(CoordenadorAcademico ca) {
-        // TODO: validação global (sigla única, etc.)
-        lstCA.add(ca);
-        return true;
+        if (validaCA(ca)) {
+            lstCA.add(ca);
+            return true;
+        }
+        return false;
     }
 
+    private boolean validaCA(CoordenadorAcademico ca) {
+        if (!ca.valida()) return false;
+        /* regra de negócio: sigla única */
+        boolean siglaExiste = lstCA.stream()
+                .anyMatch(c -> c.getSigla().equalsIgnoreCase(ca.getSigla()));
+        return !siglaExiste;
+    }
+
+    /* para enviar email (simulado) */
     public void enviarCredenciaisPorEmail(CoordenadorAcademico ca) {
         System.out.println("\n>>> EMAIL ENVIADO para " + ca.getEmail());
         System.out.println(">>> Login: " + ca.getCredenciais().getLogin());
         System.out.println(">>> Password: " + ca.getCredenciais().getPassword());
     }
 
-    /* ----------  Curso  ---------- */
+    // Empresa.java
+    public List<TipoCurso> obterListaTiposCurso() {
+        return new ArrayList<>(lstTiposCurso);
+    }
     public void addCurso(Curso curso) {
         this.cursos.add(curso);
+    }
+
+    public List<Curso> getCursos() {
+        return cursos;
     }
 
     public List<Curso> getAvailableCourses() {
@@ -95,12 +120,42 @@ public class Empresa {
         }
         return null;
     }
+    /* ---------- MOCK ---------- */
+    private final List<String> cursosMock = new ArrayList<>();
+    private final List<Formador> formadoresMock = new ArrayList<>();
+    private final List<Modulo> modulosRegistados = new ArrayList<>();
+    private int seqModulo = 0;
 
-    /* ----------  Outros  ---------- */
-    @Override
-    public String toString() {
-        return "Empresa:\n" +
-                "Lista de tipos de cursos: " + lstTiposCurso + "\n";
+    public List<String> obterCursosMock() {
+        if (cursosMock.isEmpty()) {
+            cursosMock.add("Curso-Java");
+            cursosMock.add("Curso-Python");
+        }
+        return new ArrayList<>(cursosMock);
+    }
+
+    public List<Formador> obterFormadoresMock() {
+        if (formadoresMock.isEmpty()) {
+            Formador f = new Formador(); f.setNome("Formador-Teste");
+            formadoresMock.add(f);
+        }
+        return new ArrayList<>(formadoresMock);
+    }
+
+    public String gerarCodigoModulo() { return "MOD" + (++seqModulo); }
+
+    public boolean horarioDisponivel(Formador f, String horario) {
+        for (Modulo m : modulosRegistados)
+            if (m.getFormadorResponsavel().equals(f) &&
+                    m.getHorario().equalsIgnoreCase(horario))
+                return false;
+        return true;
+    }
+
+    public boolean registaModulo(String curso, Modulo m) {
+        modulosRegistados.add(m);
+        System.out.println("\n>>> Módulo associado ao curso '" + curso + "': " + m.getCodigo());
+        return true;
     }
 }
     

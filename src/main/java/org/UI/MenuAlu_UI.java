@@ -38,7 +38,8 @@ public class MenuAlu_UI
             else
             if( opcao.equals("2") )
             {
-                // Completar
+                AnularInscricao_UI ui = new AnularInscricao_UI(empresa);
+                ui.run();
                 System.out.println("Selecionou a opção: Anular inscrição num curso");
 
             }

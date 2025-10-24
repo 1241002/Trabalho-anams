@@ -15,6 +15,10 @@ public class Aluno {
         this.inscricoes.add(inscricao);
     }
 
+    public void removerInscricao(Inscricao inscricao) {
+        this.inscricoes.remove(inscricao);
+    }
+
     public List<Inscricao> getInscricoes() {
         return inscricoes;
     }
