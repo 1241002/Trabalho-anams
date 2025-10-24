@@ -120,6 +120,43 @@ public class Empresa
         }
         return null;
     }
+    /* ---------- MOCK ---------- */
+    private final List<String> cursosMock = new ArrayList<>();
+    private final List<Formador> formadoresMock = new ArrayList<>();
+    private final List<Modulo> modulosRegistados = new ArrayList<>();
+    private int seqModulo = 0;
+
+    public List<String> obterCursosMock() {
+        if (cursosMock.isEmpty()) {
+            cursosMock.add("Curso-Java");
+            cursosMock.add("Curso-Python");
+        }
+        return new ArrayList<>(cursosMock);
+    }
+
+    public List<Formador> obterFormadoresMock() {
+        if (formadoresMock.isEmpty()) {
+            Formador f = new Formador(); f.setNome("Formador-Teste");
+            formadoresMock.add(f);
+        }
+        return new ArrayList<>(formadoresMock);
+    }
+
+    public String gerarCodigoModulo() { return "MOD" + (++seqModulo); }
+
+    public boolean horarioDisponivel(Formador f, String horario) {
+        for (Modulo m : modulosRegistados)
+            if (m.getFormadorResponsavel().equals(f) &&
+                    m.getHorario().equalsIgnoreCase(horario))
+                return false;
+        return true;
+    }
+
+    public boolean registaModulo(String curso, Modulo m) {
+        modulosRegistados.add(m);
+        System.out.println("\n>>> Módulo associado ao curso '" + curso + "': " + m.getCodigo());
+        return true;
+    }
 }
     
     
